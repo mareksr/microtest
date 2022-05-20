@@ -1,3 +1,34 @@
+   1  vi /etc/profile
+    2  exit
+    3  k get all
+    4  ls
+    5   git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.2.1
+    6  cd kubernetes-ingress/deployments
+    7  kubectl apply -f common/ns-and-sa.yaml
+    8  kubectl apply -f rbac/rbac.yaml
+    9  kubectl apply -f rbac/ap-rbac.yaml
+   10  kubectl apply -f rbac/apdos-rbac.yaml
+   11  kubectl apply -f common/default-server-secret.yaml
+   12  kubectl apply -f common/nginx-config.yaml
+   13  vi common/ingress-class.yaml
+   14  kubectl apply -f common/ingress-class.yaml
+   15  vi common/ingress-class.yaml
+   16  kubectl apply -f common/ingress-class.yaml
+   17  vi common/ingress-class.yaml
+   18  kubectl apply -f common/ingress-class.yaml
+   19  vi common/ingress-class.yaml
+   20  kubectl apply -f common/ingress-class.yaml
+ 
+   26  kubectl apply -f deployment/nginx-ingress.yaml
+   27  kubectl apply -f daemon-set/nginx-ingress.yaml
+ 
+
+
+
+
+
+
+   
    96  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    97  ls
    98  sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
