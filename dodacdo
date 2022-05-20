@@ -1,0 +1,36 @@
+   96  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   97  ls
+   98  sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+   99   ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+  100  ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+  101  /usr/local/bin/kubens
+  102  cd /opt/kubectx/
+  103  ls
+  104  ls /usr/local/bin/kubens
+  105  s /usr/local/bin/kubens
+  106   /usr/local/bin/kubens
+  107  kubectl
+  108   /usr/local/bin/kubens
+  109  kubens
+  110  cd
+  111  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  112  vi /etc/profile
+  113  exit
+  114  ls
+  115   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  116  install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  117  /usr/local/bin/kubectl
+  118  /usr/local/bin/kubectl
+  119  exit
+  120  vi /etc/profile
+  121  exit
+  122  kubectl
+  123  kubectl get all
+  124  microk8s config
+  125  cd
+  126  mkdir .kube
+  127  cd .kube/
+  128  microk8s config > config
+  129  kubectl get all
+  130  ls
+  131  kubectl get all
