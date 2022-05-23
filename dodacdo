@@ -23,6 +23,11 @@
    27  kubectl apply -f daemon-set/nginx-ingress.yaml
  
 
+w pliku:
+
+dodać na końcu cmd arg: /root/kubernetes-ingress/deployments/daemon-set/nginx-ingress.yaml
+
+ - -enable-custom-resources=false
 
 
 
