@@ -1,3 +1,27 @@
+   openssl genrsa -out mareksr.key 2048
+openssl req -new -key mareksr.key  -out mareksr.csr -subj "/CN=mareksr/O=finance"
+openssl x509 -req -in mareksr.csr -CA ca.crt -CAkey ca.key --CAcreateserial -out mareksr.crt  -days 365
+k --kubeconfig mareksr.kubeconfig config set-cluster microk8s-cluster --server https://192.168.10.78:16443 --certificate-authority=ca.cert
+k --kubeconfig mareksr.kubeconfig config set-credentials mareksr --client-certificate mareksr.crt --client-key mareksr.key
+k --kubeconfig mareksr.kubeconfig config set-context mareksr-kubernetes --cluster microk8s-cluster --namespace finance --user mareksr
+kubectl --kubeconfig mareksr.kubeconfig get pods
+
+k create role john-finance --verb=get,list --resource=pods --namespace finance
+k -n finance get role john-finance -o yaml
+
+k create rolebinding john-finance-rolebinding --role=john-finance --user=mareksr --namespace finance
+k -n finance get rolebinding john-finance-rolebinding -o yaml
+
+
+ microk8s enable rbac
+ k -n finance edit role john-finance
+
+k get rolebinding -A
+
+
+k create rolebinding finance-rolebinding --role=john-finance --group=finance --namespace finance
+
+   
    1  vi /etc/profile
     2  exit
     3  k get all
