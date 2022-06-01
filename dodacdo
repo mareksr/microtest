@@ -1,3 +1,61 @@
+PVC:
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+-----
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-pv-pod
+spec:
+  volumes:
+    - name: config
+      persistentVolumeClaim:
+        claimName: task-pv-claim
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: config
+          subPath: html
+        - mountPath: "/etc/nginx.conf"
+          name: config
+          subPath: nginx.conf
+
+
+
+
+kubectl exec -it task-pv-pod -- /bin/bash
+kubectl get pvc task-pv-claim
+
 
 problemo przy iptablesach:
 
@@ -11,6 +69,9 @@ nie wstają przy DROP na INPUT
 
 
 
+
+
+RBAC
 
 openssl genrsa -out mareksr.key 2048
 openssl req -new -key mareksr.key  -out mareksr.csr -subj "/CN=mareksr/O=finance"
