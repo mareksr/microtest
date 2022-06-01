@@ -1,4 +1,18 @@
-   openssl genrsa -out mareksr.key 2048
+
+problemo przy iptablesach:
+
+[root@energis ~]# k get pods -A
+NAMESPACE     NAME                                      READY   STATUS             RESTARTS       AGE
+kube-system   coredns-66bcf65bb8-pbdd5                  0/1     Running            3 (44s ago)    26m
+kube-system   calico-node-r2mq7                         1/1     Running            3 (44s ago)    27m
+kube-system   calico-kube-controllers-cc54b5dcd-7dsqp   0/1     CrashLoopBackOff   13 (14s ago)   27m
+
+nie wstają przy DROP na INPUT
+
+
+
+
+openssl genrsa -out mareksr.key 2048
 openssl req -new -key mareksr.key  -out mareksr.csr -subj "/CN=mareksr/O=finance"
 openssl x509 -req -in mareksr.csr -CA ca.crt -CAkey ca.key --CAcreateserial -out mareksr.crt  -days 365
 k --kubeconfig mareksr.kubeconfig config set-cluster microk8s-cluster --server https://192.168.10.78:16443 --certificate-authority=ca.cert
